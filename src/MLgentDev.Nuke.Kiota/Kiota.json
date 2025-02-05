@@ -1,0 +1,627 @@
+{
+  "$schema": "https://raw.githubusercontent.com/nuke-build/nuke/master/source/Nuke.Tooling.Generator/schema.json",
+  "references": [
+    "https://learn.microsoft.com/en-us/openapi/kiota/using"
+  ],
+  "name": "Kiota",
+  "officialUrl": "https://github.com/microsoft/kiota",
+  "help": "OpenAPI based HTTP Client code generator",
+  "pathExecutable": "kiota",
+  "tasks": [
+    {
+      "help": "Generates a REST HTTP API client from an OpenAPI description file.",
+      "postfix": "Generate",
+      "definiteArgument": "generate",
+      "settingsClass": {
+        "properties": [
+          {
+            "name": "Openapi",
+            "type": "string",
+            "format": "--openapi {value}",
+            "secret": false,
+            "help": "The path or URI to the OpenAPI description file used to generate the code files."
+          },
+          {
+            "name": "Manifest",
+            "type": "string",
+            "format": "--manifest {value}",
+            "secret": false,
+            "help": "The path or URI to the API manifest file used to generate the code files. Append #apikey if the target manifest contains multiple API dependencies entries."
+          },
+          {
+            "name": "Output",
+            "type": "string",
+            "format": "--output {value}",
+            "default": "./output",
+            "secret": false,
+            "help": "The output directory path for the generated code files."
+          },
+          {
+            "name": "Language",
+            "type": "GenerationLanguage",
+            "format": "--language {value}",
+            "secret": false,
+            "help": "The target language for the generated code files."
+          },
+          {
+            "name": "ClassName",
+            "type": "string",
+            "format": "--class-name {value}",
+            "default": "ApiClient",
+            "secret": false,
+            "help": "The class name to use for the core client class."
+          },
+          {
+            "name": "TypeAccessModifier",
+            "type": "AccessModifier",
+            "format": "--type-access-modifier {value}",
+            "default": "Public",
+            "secret": false,
+            "help": "The type access modifier to use for the client types."
+          },
+          {
+            "name": "NamespaceName",
+            "type": "string",
+            "format": "--namespace-name {value}",
+            "default": "ApiSdk",
+            "secret": false,
+            "help": "The namespace to use for the core client class specified with the --class-name option."
+          },
+          {
+            "name": "LogLevel",
+            "type": "LogLevel",
+            "format": "--log-level {value}",
+            "default": "Debug",
+            "secret": false,
+            "help": "The log level to use when logging messages to the main output."
+          },
+          {
+            "name": "BackingStore",
+            "type": "bool",
+            "format": "--backing-store {value}",
+            "default": "False",
+            "secret": false,
+            "help": "Enables backing store for models."
+          },
+          {
+            "name": "ExcludeBackwardCompatible",
+            "type": "bool",
+            "format": "--exclude-backward-compatible {value}",
+            "default": "False",
+            "secret": false,
+            "help": "Excludes backward compatible and obsolete assets from the generated result. Should be used for new clients."
+          },
+          {
+            "name": "AdditionalData",
+            "type": "bool",
+            "format": "--additional-data {value}",
+            "default": "True",
+            "secret": false,
+            "help": "Will include the 'AdditionalData' property for models."
+          },
+          {
+            "name": "Serializer",
+            "type": "List<string>",
+            "format": "--serializer {value}",
+            "separator": " ",
+            "secret": false,
+            "help": "The fully qualified class names for serializers. Accepts multiple values. Use `none` to generate a client without any serializer."
+          },
+          {
+            "name": "Deserializer",
+            "type": "List<string>",
+            "format": "--deserializer {value}",
+            "separator": " ",
+            "secret": false,
+            "help": "The fully qualified class names for deserializers. Accepts multiple values. Use `none` to generate a client without any deserializer."
+          },
+          {
+            "name": "CleanOutput",
+            "type": "bool",
+            "format": "--clean-output {value}",
+            "default": "False",
+            "secret": false,
+            "help": "Removes all files from the output directory before generating the code files."
+          },
+          {
+            "name": "StructuredMimeTypes",
+            "type": "List<string>",
+            "format": "--structured-mime-types {value}",
+            "separator": " ",
+            "secret": false,
+            "help": "The MIME types with optional priorities as defined in RFC9110 Accept header to use for structured data model generation. Accepts multiple values."
+          },
+          {
+            "name": "IncludePath",
+            "type": "List<string>",
+            "format": "--include-path {value}",
+            "separator": " ",
+            "secret": false,
+            "help": "The paths to include in the generation. Glob patterns accepted. Accepts multiple values. Append #OPERATION to the pattern to specify the operation to include. e.g. users/*/messages#GET"
+          },
+          {
+            "name": "ExcludePath",
+            "type": "List<string>",
+            "format": "--exclude-path {value}",
+            "separator": " ",
+            "secret": false,
+            "help": "The paths to exclude from the generation. Glob patterns accepted. Accepts multiple values. Append #OPERATION to the pattern to specify the operation to exclude. e.g. users/*/messages#GET"
+          },
+          {
+            "name": "DisableValidationRules",
+            "type": "List<string>",
+            "format": "--disable-validation-rules {value}",
+            "separator": " ",
+            "secret": false,
+            "help": "The OpenAPI description validation rules to disable. Accepts multiple values."
+          },
+          {
+            "name": "ClearCache",
+            "type": "bool",
+            "format": "--clear-cache {value}",
+            "default": "False",
+            "secret": false,
+            "help": "Clears any cached data for the current command."
+          },
+          {
+            "name": "DisableSslValidation",
+            "type": "bool",
+            "format": "--disable-ssl-validation {value}",
+            "default": "False",
+            "secret": false,
+            "help": "Disables SSL certificate validation."
+          }
+        ]
+      }
+    },
+    {
+      "help": "Searches for an OpenAPI description in multiple registries.",
+      "postfix": "Search",
+      "definiteArgument": "search",
+      "settingsClass": {
+        "properties": [
+          {
+            "name": "SearchTerm",
+            "type": "string",
+            "format": "{value}",
+            "position": 0,
+            "help": "The term to search for."
+          },
+          {
+            "name": "LogLevel",
+            "type": "LogLevel",
+            "format": "--log-level {value}",
+            "default": "Debug",
+            "secret": false,
+            "help": "The log level to use when logging messages to the main output."
+          },
+          {
+            "name": "ClearCache",
+            "type": "bool",
+            "format": "--clear-cache {value}",
+            "default": "False",
+            "secret": false,
+            "help": "Clears any cached data for the current command."
+          },
+          {
+            "name": "Version",
+            "type": "string",
+            "format": "--version {value}",
+            "default": "",
+            "secret": false,
+            "help": "The version of the OpenAPI document to use."
+          }
+        ]
+      }
+    },
+    {
+      "help": "Downloads an OpenAPI description from multiple registries.",
+      "postfix": "Download",
+      "definiteArgument": "download",
+      "settingsClass": {
+        "properties": [
+          {
+            "name": "Key",
+            "type": "string",
+            "format": "{value}",
+            "position": 0,
+            "help": "The search result key to download the description for. Use the search command to get the key."
+          },
+          {
+            "name": "LogLevel",
+            "type": "LogLevel",
+            "format": "--log-level {value}",
+            "default": "Debug",
+            "secret": false,
+            "help": "The log level to use when logging messages to the main output."
+          },
+          {
+            "name": "ClearCache",
+            "type": "bool",
+            "format": "--clear-cache {value}",
+            "default": "False",
+            "secret": false,
+            "help": "Clears any cached data for the current command."
+          },
+          {
+            "name": "Version",
+            "type": "string",
+            "format": "--version {value}",
+            "default": "",
+            "secret": false,
+            "help": "The version of the OpenAPI document to use."
+          },
+          {
+            "name": "CleanOutput",
+            "type": "bool",
+            "format": "--clean-output {value}",
+            "default": "False",
+            "secret": false,
+            "help": "Removes all files from the output directory before generating the code files."
+          },
+          {
+            "name": "Output",
+            "type": "string",
+            "format": "--output {value}",
+            "default": "./output/result.json",
+            "secret": false,
+            "help": "The output directory path for the generated code files."
+          },
+          {
+            "name": "DisableSslValidation",
+            "type": "bool",
+            "format": "--disable-ssl-validation {value}",
+            "default": "False",
+            "secret": false,
+            "help": "Disables SSL certificate validation."
+          }
+        ]
+      }
+    },
+    {
+      "help": "Displays the API tree in a given description.",
+      "postfix": "Show",
+      "definiteArgument": "show",
+      "settingsClass": {
+        "properties": [
+          {
+            "name": "SearchKey",
+            "type": "string",
+            "format": "--search-key {value}",
+            "default": "",
+            "secret": false,
+            "help": "The API search key to display the description for. Use the search command to get the key."
+          },
+          {
+            "name": "LogLevel",
+            "type": "LogLevel",
+            "format": "--log-level {value}",
+            "default": "Debug",
+            "secret": false,
+            "help": "The log level to use when logging messages to the main output."
+          },
+          {
+            "name": "Version",
+            "type": "string",
+            "format": "--version {value}",
+            "default": "",
+            "secret": false,
+            "help": "The version of the OpenAPI document to use."
+          },
+          {
+            "name": "Openapi",
+            "type": "string",
+            "format": "--openapi {value}",
+            "secret": false,
+            "help": "The path or URI to the OpenAPI description file used to generate the code files."
+          },
+          {
+            "name": "Manifest",
+            "type": "string",
+            "format": "--manifest {value}",
+            "secret": false,
+            "help": "The path or URI to the API manifest file used to generate the code files. Append #apikey if the target manifest contains multiple API dependencies entries."
+          },
+          {
+            "name": "MaxDepth",
+            "type": "int",
+            "format": "--max-depth {value}",
+            "default": "5",
+            "secret": false,
+            "help": "The maximum depth of the tree to display"
+          },
+          {
+            "name": "IncludePath",
+            "type": "List<string>",
+            "format": "--include-path {value}",
+            "separator": " ",
+            "secret": false,
+            "help": "The paths to include in the generation. Glob patterns accepted. Accepts multiple values. Append #OPERATION to the pattern to specify the operation to include. e.g. users/*/messages#GET"
+          },
+          {
+            "name": "ExcludePath",
+            "type": "List<string>",
+            "format": "--exclude-path {value}",
+            "separator": " ",
+            "secret": false,
+            "help": "The paths to exclude from the generation. Glob patterns accepted. Accepts multiple values. Append #OPERATION to the pattern to specify the operation to exclude. e.g. users/*/messages#GET"
+          },
+          {
+            "name": "ClearCache",
+            "type": "bool",
+            "format": "--clear-cache {value}",
+            "default": "False",
+            "secret": false,
+            "help": "Clears any cached data for the current command."
+          },
+          {
+            "name": "DisableSslValidation",
+            "type": "bool",
+            "format": "--disable-ssl-validation {value}",
+            "default": "False",
+            "secret": false,
+            "help": "Disables SSL certificate validation."
+          }
+        ]
+      }
+    },
+    {
+      "help": "Displays information about the languages supported by kiota and dependencies to add in your project.",
+      "postfix": "Info",
+      "definiteArgument": "info",
+      "settingsClass": {
+        "properties": [
+          {
+            "name": "Openapi",
+            "type": "string",
+            "format": "--openapi {value}",
+            "secret": false,
+            "help": "The path or URI to the OpenAPI description file used to generate the code files."
+          },
+          {
+            "name": "Manifest",
+            "type": "string",
+            "format": "--manifest {value}",
+            "secret": false,
+            "help": "The path or URI to the API manifest file used to generate the code files. Append #apikey if the target manifest contains multiple API dependencies entries."
+          },
+          {
+            "name": "Version",
+            "type": "string",
+            "format": "--version {value}",
+            "default": "",
+            "secret": false,
+            "help": "The version of the OpenAPI document to use."
+          },
+          {
+            "name": "LogLevel",
+            "type": "LogLevel",
+            "format": "--log-level {value}",
+            "default": "Debug",
+            "secret": false,
+            "help": "The log level to use when logging messages to the main output."
+          },
+          {
+            "name": "ClearCache",
+            "type": "bool",
+            "format": "--clear-cache {value}",
+            "default": "False",
+            "secret": false,
+            "help": "Clears any cached data for the current command."
+          },
+          {
+            "name": "SearchKey",
+            "type": "string",
+            "format": "--search-key {value}",
+            "default": "",
+            "secret": false,
+            "help": "The API search key to display the description for. Use the search command to get the key."
+          },
+          {
+            "name": "Language",
+            "type": "GenerationLanguage",
+            "format": "--language {value}",
+            "secret": false,
+            "help": "The target language for the dependencies instructions."
+          },
+          {
+            "name": "Json",
+            "type": "bool",
+            "format": "--json {value}",
+            "secret": false,
+            "help": "Generate a plain and machine-parsable json output."
+          },
+          {
+            "name": "DependencyType",
+            "type": "List<DependencyType>",
+            "format": "--dependency-type {value}",
+            "separator": " ",
+            "secret": false,
+            "help": "The type of dependency to display instructions for."
+          }
+        ]
+      }
+    },
+    {
+      "help": "Updates existing clients under the target directory using their lock files.",
+      "postfix": "Update",
+      "definiteArgument": "update",
+      "settingsClass": {
+        "properties": [
+          {
+            "name": "Output",
+            "type": "string",
+            "format": "--output {value}",
+            "default": "./output",
+            "secret": false,
+            "help": "The output directory path for the generated code files."
+          },
+          {
+            "name": "LogLevel",
+            "type": "LogLevel",
+            "format": "--log-level {value}",
+            "default": "Debug",
+            "secret": false,
+            "help": "The log level to use when logging messages to the main output."
+          },
+          {
+            "name": "CleanOutput",
+            "type": "bool",
+            "format": "--clean-output {value}",
+            "default": "False",
+            "secret": false,
+            "help": "Removes all files from the output directory before generating the code files."
+          },
+          {
+            "name": "ClearCache",
+            "type": "bool",
+            "format": "--clear-cache {value}",
+            "default": "False",
+            "secret": false,
+            "help": "Clears any cached data for the current command."
+          }
+        ]
+      }
+    },
+    {
+      "help": "Logs in to GitHub using a device code flow.",
+      "postfix": "LoginGithubDevice",
+      "definiteArgument": "login github device",
+      "settingsClass": {
+        "properties": [
+          {
+            "name": "LogLevel",
+            "type": "LogLevel",
+            "format": "--log-level {value}",
+            "default": "Debug",
+            "secret": false,
+            "help": "The log level to use when logging messages to the main output."
+          }
+        ]
+      }
+    },
+    {
+      "help": "Logs in to GitHub using a Personal Access Token.",
+      "postfix": "LoginGithubPat",
+      "definiteArgument": "login github pat",
+      "settingsClass": {
+        "properties": [
+          {
+            "name": "LogLevel",
+            "type": "LogLevel",
+            "format": "--log-level {value}",
+            "default": "Debug",
+            "secret": false,
+            "help": "The log level to use when logging messages to the main output."
+          },
+          {
+            "name": "Pat",
+            "type": "string",
+            "format": "--pat {value}",
+            "secret": true,
+            "help": "The personal access token to use to authenticate to GitHub."
+          }
+        ]
+      }
+    },
+    {
+      "help": "Logs out of GitHub.",
+      "postfix": "LogoutGithub",
+      "definiteArgument": "logout github",
+      "settingsClass": {
+        "properties": [
+          {
+            "name": "LogLevel",
+            "type": "LogLevel",
+            "format": "--log-level {value}",
+            "default": "Debug",
+            "secret": false,
+            "help": "The log level to use when logging messages to the main output."
+          }
+        ]
+      }
+    },
+    {
+      "help": "WARNING EXPERIMENTAL: Starts a kiota as a JSON-RPC server.",
+      "postfix": "Rpc",
+      "definiteArgument": "rpc",
+      "settingsClass": {
+        "properties": [
+          {
+            "name": "Mode",
+            "type": "RpcMode",
+            "format": "--mode {value}",
+            "default": "Stdio",
+            "secret": false,
+            "help": "Whether the RPC server should use stdin/stdout or a named pipe."
+          },
+          {
+            "name": "PipeName",
+            "type": "string",
+            "format": "--pipe-name {value}",
+            "default": "KiotaJsonRpc",
+            "secret": false,
+            "help": "The name of the named pipe to use for the RPC server."
+          }
+        ]
+      }
+    }
+  ],
+  "enumerations": [
+    {
+      "name": "GenerationLanguage",
+      "values": [
+        "CSharp",
+        "Java",
+        "TypeScript",
+        "PHP",
+        "Python",
+        "Go",
+        "Swift",
+        "Ruby",
+        "CLI",
+        "Dart",
+        "HTTP"
+      ]
+    },
+    {
+      "name": "AccessModifier",
+      "values": [
+        "Private",
+        "Protected",
+        "Public",
+        "Internal"
+      ]
+    },
+    {
+      "name": "LogLevel",
+      "values": [
+        "Trace",
+        "Debug",
+        "Information",
+        "Warning",
+        "Error",
+        "Critical",
+        "None"
+      ]
+    },
+    {
+      "name": "DependencyType",
+      "values": [
+        "Abstractions",
+        "Serialization",
+        "Authentication",
+        "Http",
+        "Bundle",
+        "Additional"
+      ]
+    },
+    {
+      "name": "RpcMode",
+      "values": [
+        "Stdio",
+        "NamedPipe"
+      ]
+    }
+  ]
+}

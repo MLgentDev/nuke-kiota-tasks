@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "..\build\_build.csproj", "{4652CFE0-0C64-46B4-AA45-C132BD5FFEEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KiotaTasks.Generator", "KiotaTasks.Generator\KiotaTasks.Generator.csproj", "{44ECE6DA-F48F-4AE2-B9CC-DDAF2F7B0BAC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MLgentDev.Nuke.Kiota", "MLgentDev.Nuke.Kiota\MLgentDev.Nuke.Kiota.csproj", "{4D51949A-A109-41A0-8EA3-F7AFBDE35353}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MLgentDev.Nuke.Kiota.Tests", "MLgentDev.Nuke.Kiota.Tests\MLgentDev.Nuke.Kiota.Tests.csproj", "{846D1C32-C5BC-4704-B4EF-677D2B0EAC02}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4652CFE0-0C64-46B4-AA45-C132BD5FFEEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4652CFE0-0C64-46B4-AA45-C132BD5FFEEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44ECE6DA-F48F-4AE2-B9CC-DDAF2F7B0BAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44ECE6DA-F48F-4AE2-B9CC-DDAF2F7B0BAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44ECE6DA-F48F-4AE2-B9CC-DDAF2F7B0BAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44ECE6DA-F48F-4AE2-B9CC-DDAF2F7B0BAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D51949A-A109-41A0-8EA3-F7AFBDE35353}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D51949A-A109-41A0-8EA3-F7AFBDE35353}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D51949A-A109-41A0-8EA3-F7AFBDE35353}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D51949A-A109-41A0-8EA3-F7AFBDE35353}.Release|Any CPU.Build.0 = Release|Any CPU
+		{846D1C32-C5BC-4704-B4EF-677D2B0EAC02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{846D1C32-C5BC-4704-B4EF-677D2B0EAC02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{846D1C32-C5BC-4704-B4EF-677D2B0EAC02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{846D1C32-C5BC-4704-B4EF-677D2B0EAC02}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

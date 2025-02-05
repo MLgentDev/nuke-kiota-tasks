@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Version>0.1.0</Version>
+        <Authors>MLgentDev</Authors>
+        <Description>kiota tool integration for nuke</Description>
+        <PackageTags>nuke openapi kiota</PackageTags>
+        <PackageProjectUrl>https://github.com/MLgentDev/nuke-kiota-tasks</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/MLgentDev/nuke-kiota-tasks</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryBranch>main</RepositoryBranch>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <Copyright>© 2024 MLgentDev. Licensed under the MIT License.</Copyright>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Nuke.Common" Version="9.0.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="README.md">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
+    </ItemGroup>
+</Project>

@@ -1,6 +1,6 @@
 # KiotaTasks for nuke
 ## [kiota](https://github.com/microsoft/kiota) tool integration for [nuke](https://github.com/nuke-build/nuke)
-![NuGet Version](https://img.shields.io/nuget/v/MLgentDev.Nuke.Kiota)
+[![NuGet Version](https://img.shields.io/nuget/v/MLgentDev.Nuke.Kiota)](https://www.nuget.org/packages/MLgentDev.Nuke.Kiota)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/MLgentDev/nuke-kiota-tasks/MakeAllCi.yml)
 ![GitHub License](https://img.shields.io/github/license/MLgentDev/nuke-kiota-tasks)
 

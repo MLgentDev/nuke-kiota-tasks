@@ -1,5 +1,9 @@
 # KiotaTasks for nuke
 ## [kiota](https://github.com/microsoft/kiota) tool integration for [nuke](https://github.com/nuke-build/nuke)
+![NuGet Version](https://img.shields.io/nuget/v/MLgentDev.Nuke.Kiota)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/MLgentDev/nuke-kiota-tasks/MakeAllCi.yml)
+![GitHub License](https://img.shields.io/github/license/MLgentDev/nuke-kiota-tasks)
+
 
 ## Project Status: Minimal Support
 This project is provided as-is, with no guarantee of ongoing support or active development. While I may make occasional improvements when I have time, I do not actively maintain or provide support for this library.
@@ -16,7 +20,7 @@ dotnet tool install --global Microsoft.OpenApi.Kiota
 ```
 Add package to the project
 ```shell
-dotnet add package MLgentDev.Nuke.Kiota --version 0.1.0
+dotnet add package MLgentDev.Nuke.Kiota 
 ```
 Example
 ```csharp
